@@ -4,7 +4,7 @@
 [![Node.js Version](https://img.shields.io/badge/node.js-10.5.0-blue.svg)](http://nodejs.org/download)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/clerkkent/bjh-func-test/blob/master/LICENSE)
 
-语言: [English](./README.md) | [简体中文](./README.ZH.md)
+语言: [English](./README.md) | [简体中文](./README-ZH.md)
 
 A Template for create template&use template fast;
 
