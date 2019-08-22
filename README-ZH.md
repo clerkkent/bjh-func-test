@@ -10,27 +10,27 @@ A Template for create template&use template fast;
 
 <br/>
 
-## Features
+## 特征
 
-  - easy
-  - fast
-  - global operation
-  - configurable
+  - 简单
+  - 快速
+  - 全局可控
+  - 配置性高
 <br/>
 
-##main command
-  - init or i: to init a workspace
-  - create or c: choice a template to create a new work
-  - help or h: see more details
-  - version or v: about the version
+##主要命令
+  - init or i: 初始化一个工作空间
+  - create or c: 选择一个模板产出业务文件
+  - help or h: 更多
+  - version or v: 版本
 
-## Use 
+## 用法
   - npm i bjh-func-test
   - bjh-func-test init
   - bjh-func-test create
-  - use Temp to replace your key word
-  - more keywords to replace, please generate a replace-items.json in your template folder and Configure it!
-  - example for replace-items.json
+  - 使用Temp关键词替代你的项目名
+  - 更多关键词替换请在模板文件夹下建立replace-items.json，进行配置
+  - 例子 replace-items.json
 
   ```javascript
     [{
@@ -39,8 +39,8 @@ A Template for create template&use template fast;
     }]
   ```
 
-  more file to process, please generate a bjh-temp.js in your workspace and Configure it!
-  - example for replace-items.json
+  有更多需要特别处理的文件，如路由，入口文件等，在replace-items.js中进行配置
+  - 例子 replace-items.js
 
   ```javascript
     // name为项目名称，可在此引用
