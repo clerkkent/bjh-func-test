@@ -8,6 +8,8 @@
 
 A Template for create template&use template fast;
 
+模板库初始化工具，帮助你使用线下模板库，或者线上模板库，快速创建业务文件！
+
 <br/>
 
 ## 特征
