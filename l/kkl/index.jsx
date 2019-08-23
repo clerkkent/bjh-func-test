@@ -1,2 +1,0 @@
-kalsdlsdasd = kalsdlsdasd;
-kkl = kkl;

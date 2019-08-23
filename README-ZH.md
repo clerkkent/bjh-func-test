@@ -28,7 +28,8 @@ A Template for create template&use template fast;
   - npm i bjh-func-test
   - bjh-func-test init
   - bjh-func-test create
-  - 使用Temp关键词替代你的项目名
+  - bjh-func-test create --origin (使用远程模板库，创建项目)
+  - 使用 BJH-TEMP 关键词替代你的项目名
   - 更多关键词替换请在模板文件夹下建立replace-items.json，进行配置
   - 例子 replace-items.json
 

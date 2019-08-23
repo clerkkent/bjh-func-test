@@ -1,14 +1,19 @@
 import {
-    Command
+    Command, SubOptions, CommandArgsProvider
 } from 'func';
+import { rejects } from 'assert';
 
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
+var spawn = require('child_process').spawn;
 const log = (color, txt) => console.log(chalk[color](txt));
 
 function read(src, params: Object, sign: boolean = false) {
+    if(src.indexOf(".git") > -1) {
+        return;
+    }
     fs.readFile(src, 'utf8', (err, data) => {
         if (err) {
             throw err;
@@ -35,16 +40,24 @@ function write(src, data) {
     name: 'create',
     alias: 'c'
 })
+@SubOptions([{ name: 'origin' }])
 export class Create {
-    constructor() {
-        this.init();
+    constructor(
+        private arg: CommandArgsProvider,
+    ) {
+        this.init(~~arg.option['origin']);
     }
-    init = async() => {
+    init = async(origin: number) => {
         const root_path = process.cwd();
         let repe = false;
         let more = [];
         let more_con = {};
-        let others, other_con;
+        let others, other_con, remote_status, remote_choice;
+        let remote = origin ? [{
+            type: 'input',
+            message: '请输入远程git地址:',
+            name: 'url'
+        }]: [];
         const v = await inquirer.prompt([{
             type: 'input',
             message: '请选择模板类型:',
@@ -53,7 +66,7 @@ export class Create {
             type: 'input',
             message: '请输入项目名称:',
             name: 'name'
-        }]);
+        }, ...remote]);
 
         const d = await new Promise((resolve, reject) => {
             fs.readFile(path.join(root_path, 'bjh-temp.json'),  'utf8', (err, data) => {
@@ -68,6 +81,30 @@ export class Create {
 
         const packagesDir = process.cwd() + '/' + d['template'] + '/' + v.template;
         const newDir =  process.cwd()  + '/' + d['project'] + '/' + v.name;
+        if(origin && fs.existsSync(packagesDir)) {
+            remote_choice = await inquirer.prompt([{
+                type: "list",
+                message: "模板本地已存在，是否执行git pull更新模板后创建项目？（git pull origin master）",
+                name: "confirm",
+                choices: [
+                    "yes",
+                    "no",
+                ]
+            }]);
+            if(remote_choice['confirm'] === "yes") {
+                remote_status = await this.gitPull(v.url, packagesDir, true);
+            }
+        }
+
+        if(origin && !fs.existsSync(packagesDir)) {
+            remote_status = await this.gitPull(v.url, d['template'], false);
+        }
+
+        if(origin && remote_status === 0) {
+            log('green', '远程库拉取完毕！');
+        } else if(origin && remote_status !== 0) {
+            log('red', '远程库拉取/更新异常！');
+        }
 
         if(fs.existsSync(newDir)) {
             repe = await inquirer.prompt([{
@@ -172,11 +209,24 @@ export class Create {
                 }
                 log('yellow', `copy ${src} to  ${dest} complete!!!`);
                 read(dest, {
-                    "Temp": projectName,
+                    "BJH-TEMP": projectName,
                     ...more_con
                 });
             });
         }
         return;
+    }
+    gitPull = async (url, target, sign) => {
+        const command = 'git';
+        const args = sign ? ['pull', 'origin', 'master'] : ['clone', url];
+        let r = await new Promise((resolve, rejects) => {
+            let s = spawn(command, args, {
+                cwd: target
+            });
+            s.on("close", function(status) {
+                resolve(status);
+            })
+        });
+        return r;
     }
 }

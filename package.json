@@ -1,35 +1,38 @@
 {
-    "name": "bjh-func-test",
-    "version": "0.1.4",
-    "main": "dist/index.js",
-    "license": "MIT",
-    "preferGlobal": true,
-    "scripts": {
-        "start": "func-service dev",
-        "build": "func-service build",
-        "test": "yarn build && ava",
-        "lint": "tslint -c tslint.yml -p tsconfig.json"
-    },
-    "dependencies": {
-        "func": "^1.1.0",
-        "inquirer": "^6.4.1"
-    },
-    "devDependencies": {
-        "@types/node": "^12.0.8",
-        "ava": "^2.1.0",
-        "chalk": "^2.4.2",
-        "func-service": "^0.1.1",
-        "ncc": "^0.3.6",
-        "ts-node": "^8.2.0",
-        "tslint": "^5.17.0",
-        "tslint-config-lambdas": "^1.1.0",
-        "typescript": "^3.5.2"
-    },
-    "files": [
-        "dist",
-        "README.md"
-    ],
-    "bin": {
-        "bjh-func-test": "./dist/bin.js"
-    }
+  "name": "bjh-func-test",
+  "version": "0.1.5",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "preferGlobal": true,
+  "scripts": {
+    "start": "func-service dev",
+    "build": "func-service build",
+    "test": "yarn build && ava",
+    "lint": "tslint -c tslint.yml -p tsconfig.json"
+  },
+  "dependencies": {
+    "func": "^1.1.0",
+    "git-clone-repo": "^1.0.0",
+    "inquirer": "^6.4.1",
+    "open": "^6.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.8",
+    "ava": "^2.1.0",
+    "chalk": "^2.4.2",
+    "func-service": "^0.1.1",
+    "git-clone": "^0.1.0",
+    "ncc": "^0.3.6",
+    "ts-node": "^8.2.0",
+    "tslint": "^5.17.0",
+    "tslint-config-lambdas": "^1.1.0",
+    "typescript": "^3.5.2"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "bin": {
+    "bjh-func-test": "./dist/bin.js"
+  }
 }

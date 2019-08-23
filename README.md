@@ -28,7 +28,8 @@ A Template for create template&use template fast;
   - npm i bjh-func-test
   - bjh-func-test init
   - bjh-func-test create
-  - use Temp to replace your key word
+  - bjh-func-test create --origin (use remote template create a work)
+  - use BJH-TEMP to replace your key word
   - more keywords to replace, please generate a replace-items.json in your template folder and Configure it!
   - example for replace-items.json
 

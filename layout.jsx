@@ -195,6 +195,11 @@ class Layout extends React.Component {
                 
                 
                 {/* replace */}
+<Route exact path="/activity/m/rc/test3" component={test3} />
+<Route exact path="/activity/m/rc/test2" component={test2} />
+<Route exact path="/activity/m/rc/test1" component={test1} />
+<Route exact path="/activity/m/rc/test" component={test} />
+<Route exact path="/activity/m/rc/test" component={test} />
 <Route exact path="/activity/m/rc/kkl" component={kkl} />
 <Route exact path="/activity/m/rc/kopo" component={kopo} />
                 <Route exact path="/activity/m/rc/kkl" component={kkl} />
